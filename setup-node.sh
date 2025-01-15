@@ -3,7 +3,10 @@
 # Install Node.js (using NodeSource) and npm
 echo "Installing Node.js and npm..."
 curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-apt-get install -y nodejs npm
+apt-get update && apt-get install -y nodejs npm
+
+# Ensure Node.js and npm are available globally
+export PATH=$PATH:/usr/local/bin
 
 # Verify Node.js and npm installation
 echo "Verifying Node.js and npm installation..."
