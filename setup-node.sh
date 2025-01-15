@@ -1,17 +1,9 @@
 #!/bin/bash
 
-# Update the package index
-echo "Updating package index..."
-sudo apt update -y
-
-# Install prerequisites
-echo "Installing prerequisites..."
-sudo apt install -y curl
-
 # Install Node.js (using NodeSource)
 echo "Installing Node.js..."
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
+curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+apt install -y nodejs
 
 # Verify Node.js and npm installation
 echo "Verifying Node.js and npm installation..."
