@@ -39,10 +39,6 @@ server.listen(PORT, () => {
 });
 EOL
 
-# Add start script to package.json
-echo "Adding start script to package.json..."
-sed -i 's/"scripts": {/"scripts": {\n    "start": "node hello.js",/' package.json
-
 # Start the Node.js application
 echo "Starting the Node.js application..."
-npm start
+node hello.js
