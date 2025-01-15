@@ -1,47 +1,50 @@
 #!/bin/bash
 
-# Install Node.js (using NodeSource) and npm
-echo "Installing Node.js and npm..."
-curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-apt-get update && apt-get install -y nodejs npm
+# Script to install Node.js and npm on Ubuntu
 
-# Ensure Node.js and npm are available globally
-export PATH=$PATH:/usr/local/bin
+echo "Installing pre-requisites"
+
+# Update package list and install required dependencies
+apt-get update -y
+
+# Install necessary packages
+apt-get install -y \
+    curl \
+    ca-certificates \
+    gnupg \
+    lsb-release \
+    apt-transport-https \
+    software-properties-common
+
+# Add NodeSource repository for Node.js 18
+curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+
+# Install Node.js and npm
+echo "Installing Node.js and npm..."
+apt-get install -y nodejs
 
 # Verify Node.js and npm installation
-echo "Verifying Node.js and npm installation..."
-node_version=$(node -v)
-npm_version=$(npm -v)
-echo "Node.js version: $node_version"
-echo "npm version: $npm_version"
+echo "Verifying Node.js installation..."
+node -v
 
-# Create a directory for the Node.js project
-project_dir="hello-world-node"
-echo "Creating project directory: $project_dir"
-mkdir $project_dir
-cd $project_dir
+echo "Verifying npm installation..."
+npm -v
 
-# Initialize a Node.js project
+# Create a project directory and initialize a Node.js project
+echo "Creating project directory: hello-world-node"
+mkdir hello-world-node
+cd hello-world-node
+
+# Initialize Node.js project
 echo "Initializing Node.js project..."
 npm init -y
 
-# Create a simple "Hello World" app inside the project directory
-echo "Creating hello.js inside $project_dir..."
-cat <<EOL > hello.js
-const http = require('http');
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\\n');
-});
-
-const PORT = 3000;
-server.listen(PORT, () => {
-  console.log(\`Server running at http://localhost:\${PORT}/\`);
-});
+# Create a simple Node.js app
+echo "Creating hello.js inside hello-world-node..."
+cat > hello.js << EOL
+console.log("Hello, Node.js!");
 EOL
 
-# Start the Node.js application
+# Run the Node.js application
 echo "Starting the Node.js application..."
 node hello.js
