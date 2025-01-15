@@ -1,20 +1,9 @@
 #!/bin/bash
 
-# Check if NVM is installed, if not install it
-if ! command -v nvm &> /dev/null; then
-  echo "NVM not found, installing..."
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-
-  # Source NVM script to make it available in the current shell session
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-fi
-
-# Install Node.js and npm using NVM
+# Install Node.js (using NodeSource) and npm
 echo "Installing Node.js and npm..."
-nvm install 18
-nvm use 18
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs npm
 
 # Verify Node.js and npm installation
 echo "Verifying Node.js and npm installation..."
@@ -56,4 +45,4 @@ sed -i 's/"scripts": {/"scripts": {\n    "start": "node hello.js",/' package.jso
 
 # Start the Node.js application
 echo "Starting the Node.js application..."
-npm start &
+npm start
