@@ -1,9 +1,17 @@
 #!/bin/bash
 
-# Install Node.js (using NodeSource) and npm
+# Check if NVM is installed, if not install it
+if ! command -v nvm &> /dev/null; then
+  echo "NVM not found, installing..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  # Source NVM script to make it available in the current shell session
+  source ~/.bashrc
+fi
+
+# Install Node.js and npm using NVM
 echo "Installing Node.js and npm..."
-curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-apt install -y nodejs npm
+nvm install 18
+nvm use 18
 
 # Verify Node.js and npm installation
 echo "Verifying Node.js and npm installation..."
