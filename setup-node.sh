@@ -53,4 +53,4 @@ sed -i 's/"scripts": {/"scripts": {\n    "start": "node hello.js",/' package.jso
 
 # Start the Node.js application
 echo "Starting the Node.js application..."
-npm start &
+npm start
