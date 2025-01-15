@@ -4,8 +4,11 @@
 if ! command -v nvm &> /dev/null; then
   echo "NVM not found, installing..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
   # Source NVM script to make it available in the current shell session
-  source ~/.bashrc
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 fi
 
 # Install Node.js and npm using NVM
@@ -53,4 +56,4 @@ sed -i 's/"scripts": {/"scripts": {\n    "start": "node hello.js",/' package.jso
 
 # Start the Node.js application
 echo "Starting the Node.js application..."
-npm start
+npm start &
