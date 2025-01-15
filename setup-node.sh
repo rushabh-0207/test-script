@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Install Node.js (using NodeSource)
-echo "Installing Node.js..."
+# Install Node.js (using NodeSource) and npm
+echo "Installing Node.js and npm..."
 curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-apt install -y nodejs
+apt install -y nodejs npm
 
 # Verify Node.js and npm installation
 echo "Verifying Node.js and npm installation..."
