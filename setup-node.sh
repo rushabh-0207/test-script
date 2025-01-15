@@ -53,4 +53,7 @@ sed -i 's/"scripts": {/"scripts": {\n    "start": "node hello.js",/' package.jso
 
 # Start the Node.js application
 echo "Starting the Node.js application..."
-npm start
+npm start &
+
+# Keep the container running to allow us to interact with the app (use exec to avoid container exit)
+wait
